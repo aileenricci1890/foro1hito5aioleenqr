@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐻 Ejercicios JavaScript 🐻</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5e6d3 0%, #d4a574 100%);
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: #8b6f47;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            color: #fff5e6;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .bear-emoji {
+            font-size: 3em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .ejercicio {
+            background: #fff5e6;
+            border: 4px solid #d4a574;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(139, 111, 71, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ejercicio::before {
+            content: '🐻';
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            right: 20px;
+            top: 10px;
+        }
+
+        .ejercicio h2 {
+            color: #8b6f47;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .ejercicio p {
+            color: #6b5638;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #d4a574;
+            border-radius: 10px;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            background: #fefaf5;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8b6f47;
+            box-shadow: 0 0 10px rgba(139, 111, 71, 0.3);
+        }
+
+        button {
+            background: #8b6f47;
+            color: #fff5e6;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: #6b5638;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 20px;
+            background: #d4a574;
+            border-radius: 10px;
+            color: #fff5e6;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer-bears {
+            text-align: center;
+            font-size: 2em;
+            margin-top: 30px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="bear-emoji">🐻✨</div>
+            <h1>Ejercicios de JavaScript</h1>
+            <p style="color: #fff5e6; font-size: 1.2em;">¡Aileen Quiroga Ricci! 🧸</p>
+        </header>
+
+        <!-- Ejercicio 1.1: Saludo Personalizado -->
+        <div class="ejercicio">
+            <h2>🐻 Ejercicio 1.1: Saludo Personalizado</h2>
+            <p>Escribe tu nombre y recibe un saludo especial de nuestro osito programador:</p>
+            <input type="text" id="nombre" placeholder="Escribe tu nombre aquí...">
+            <button onclick="saludar()">¡Saludar! 🐻</button>
+            <div class="resultado" id="resultado1"></div>
+        </div>
+
+        <!-- Ejercicio 1.2: Calculadora de Edad -->
+        <div class="ejercicio">
+            <h2>🎂 Ejercicio 1.2: Calculadora de Edad</h2>
+            <p>¿En qué año naciste? Déjame calcular tu edad:</p>
+            <input type="number" id="anioNacimiento" placeholder="Ej: 2000">
+            <button onclick="calcularEdad()">Calcular Edad 🐻</button>
+            <div class="resultado" id="resultado2"></div>
+        </div>
+
+        <!-- Ejercicio 2.1: Número Mayor -->
+        <div class="ejercicio">
+            <h2>🔢 Ejercicio 2.1: Número Mayor</h2>
+            <p>Ingresa dos números y descubre cuál es mayor:</p>
+            <input type="number" id="num1" placeholder="Primer número">
+            <input type="number" id="num2" placeholder="Segundo número">
+            <button onclick="compararNumeros()">Comparar 🐻</button>
+            <div class="resultado" id="resultado3"></div>
+        </div>
+
+        <!-- Ejercicio 2.2: Par o Impar -->
+        <div class="ejercicio">
+            <h2>🎯 Ejercicio 2.2: Par o Impar</h2>
+            <p>Escribe un número y descubre si es par o impar:</p>
+            <input type="number" id="numero" placeholder="Escribe un número">
+            <button onclick="parImpar()">Verificar 🐻</button>
+            <div class="resultado" id="resultado4"></div>
+        </div>
+
+        <div class="footer-bears">
+            🐻 🧸 🐻 🧸 🐻
+        </div>
+    </div>
+
+    <script>
+        // Ejercicio 1.1: Saludo Personalizado
+        function saludar() {
+            const nombre = document.getElementById('nombre').value;
+            const resultado = document.getElementById('resultado1');
+            
+            if (nombre.trim() === '') {
+                resultado.innerHTML = '🐻 Por favor, escribe tu nombre primero';
+            } else {
+                resultado.innerHTML = `🐻 ¡Hola, ${nombre}! Bienvenido/a a la programación en JavaScript. ¡Los ositos te acompañarán en este viaje! 🧸✨`;
+            }
+            
+            resultado.style.display = 'block';
+        }
+
+        // Ejercicio 1.2: Calculadora de Edad
+        function calcularEdad() {
+            const anioNacimiento = parseInt(document.getElementById('anioNacimiento').value);
+            const resultado = document.getElementById('resultado2');
+            const anioActual = 2025;
+            
+            if (isNaN(anioNacimiento) || anioNacimiento < 1900 || anioNacimiento > anioActual) {
+                resultado.innerHTML = '🐻 Por favor, ingresa un año válido';
+            } else {
+                const edad = anioActual - anioNacimiento;
+                resultado.innerHTML = `🎂 ¡Tienes ${edad} años! Los ositos celebran contigo 🐻🎉`;
+            }
+            
+            resultado.style.display = 'block';
+        }
+
+        // Ejercicio 2.1: Número Mayor
+        function compararNumeros() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = document.getElementById('resultado3');
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado.innerHTML = '🐻 Por favor, ingresa ambos números';
+            } else if (num1 > num2) {
+                resultado.innerHTML = `🏆 El número ${num1} es MAYOR que ${num2}`;
+            } else if (num2 > num1) {
+                resultado.innerHTML = `🏆 El número ${num2} es MAYOR que ${num1}`;
+            } else {
+                resultado.innerHTML = `🐻 ¡Los números son IGUALES! (${num1} = ${num2})`;
+            }
+            
+            resultado.style.display = 'block';
+        }
+
+        // Ejercicio 2.2: Par o Impar
+        function parImpar() {
+            const numero = parseInt(document.getElementById('numero').value);
+            const resultado = document.getElementById('resultado4');
+            
+            if (isNaN(numero)) {
+                resultado.innerHTML = '🐻 Por favor, ingresa un número válido';
+            } else if (numero % 2 === 0) {
+                resultado.innerHTML = `✨ El número ${numero} es PAR 🐻`;
+            } else {
+                resultado.innerHTML = `✨ El número ${numero} es IMPAR 🐻`;
+            }
+            
+            resultado.style.display = 'block';
+        }
+
+        // Permitir presionar Enter en los inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const button = this.parentElement.querySelector('button');
+                    button.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
